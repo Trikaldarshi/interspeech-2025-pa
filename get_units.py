@@ -53,4 +53,4 @@ if __name__ == "__main__":
     main(args)
 
 # Example usage:
-# python extract_unique_units.py --input_dir "path_to_your_data/transcripts" --output_path "path/units.txt"
+# python get_units.py --input_dir "path_to_your_data/transcripts" --output_path "path/units.txt"

@@ -39,9 +39,9 @@ In this work, the downstream task located in the [s3prl/s3prl/downstream/ctc](ht
 a.) 
 Navigate to [s3prl/s3prl/preprocess](https://github.com/s3prl/s3prl/tree/main/s3prl/preprocess) and move  ``` generate_len_for_bucket_sdaia.py ``` there and run:
 
-``` python generate_len_for_bucket_sdaia.py -i path_to_downloaded_data/sws_data/CV-Ar -o data/CV-Ar/```
+``` python generate_len_for_bucket_sdaia.py -i path_to_downloaded_data/sws_data/CV-Ar -o ../data/CV-Ar/```
 
-This will generate sorted files inside ```s3prl/s3prl/data/CV-Ar/train.csv``` and ```s3prl/s3prl/data/CV-Ar/dev.csv```
+This will generate sorted files inside ```s3prl/s3prl/data/CV-Ar/len_for_bucket/train.csv``` and ```s3prl/s3prl/data/CV-Ar/len_for_bucket/dev.csv```
 
 b.) 
 Navigate to [s3prl/s3prl](https://github.com/s3prl/s3prl/tree/main/s3prl/) and move  ``` csv_to_tsv_with_transcripts.py ``` there and run:

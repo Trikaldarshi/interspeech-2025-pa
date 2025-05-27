@@ -53,5 +53,8 @@ python csv_to_tsv_with_transcripts.py --csv_path s3prl/s3prl/data/CV-Ar/len_for_
 
 # Step 3: Setting up Downstream task: s3prl/s3prl/downstream/ctc
 
-a). We need to create the vocab used for phoneme recognition training. The vocab for this dataset is available at: vocabl/
+a). We need to create the vocab used for phoneme recognition training. The vocab for this dataset is available at: vocab/sws_arabic.txt or you can run the following code on training data to get the vocab:
+```
+python get_units.py --input_dir "path_to_your_data/transcripts" --output_path "path/units.txt"
+```
 

@@ -47,8 +47,8 @@ b.)
 Navigate to [s3prl/s3prl](https://github.com/s3prl/s3prl/tree/main/s3prl/) and move  ``` csv_to_tsv_with_transcripts.py ``` there and run:
 
 ```
-python csv_to_tsv_with_transcripts.py --csv_path data/CV-Ar/train.csv --transcript_root "./sws_data/CV-Ar/" --output_path "./sws_data/CV-Ar/train/train.tsv
-python csv_to_tsv_with_transcripts.py --csv_path data/CV-Ar/dev.csv --transcript_root "./sws_data/CV-Ar/" --output_path "./sws_data/CV-Ar/dev/dev.tsv
+python csv_to_tsv_with_transcripts.py --csv_path s3prl/s3prl/data/CV-Ar/len_for_bucket/train.csv --transcript_root "./sws_data/CV-Ar/" --output_path "./sws_data/CV-Ar/train/train.tsv"
+python csv_to_tsv_with_transcripts.py --csv_path s3prl/s3prl/data/CV-Ar/len_for_bucket/dev.csv --transcript_root "./sws_data/CV-Ar/" --output_path "./sws_data/CV-Ar/dev/dev.tsv"
 ```
 
 

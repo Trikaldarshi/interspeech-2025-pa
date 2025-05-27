@@ -82,17 +82,14 @@ def generate_length(args, tr_set, audio_extension):
 # MAIN #
 ########
 def main():
-
     # get arguments
     args = get_preprocess_args()
     
-    if 'sws_tts' in args.input_data.lower():
-        # SETS = ['train', 'dev', 'test']
-        SETS = ['train', 'dev']
-    else:
-        raise NotImplementedError
-    
-    # Select data sets
+    # Dynamically detect split folders
+    SETS = [d for d in os.listdir(args.input_data) if os.path.isdir(os.path.join(args.input_data, d))]
+    if not SETS:
+        raise RuntimeError(f"No split folders found in {args.input_data}")
+
     for idx, s in enumerate(SETS):
         print('\t', idx, ':', s)
     tr_set = input('Please enter the index of splits you wish to use preprocess. (separate with space): ')

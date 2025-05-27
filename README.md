@@ -1,7 +1,7 @@
 # Interspeech-2025: 
 # Step1: Data Download/ Prepare
- ## Install transformers library:
-```pip install transformers ```
+ ## Install pip install datasets library:
+```pip install pip install datasets ```
 ### Download CV-Ar data from huggingface and store into 
  - dev
    - transcripts

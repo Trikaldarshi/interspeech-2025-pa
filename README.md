@@ -65,3 +65,15 @@ The notable changes to the config are as follows:
  2. downstream_expert.corpus.path: make sure to add your path to dataset
  3. downstream_expert.corpus.train,downstream_expert.corpus.dev, downstream_expert.corpus.test: make sure you add your tsv files for each split of the data
  4. text.mode: 'word', here we treat each phone similar to a separate word or token for ctc, this would also make wer error rate (wer) = phoneme error rate (per)
+
+# Step4: Training and Evaluation bash script
+```
+exp_dir='hubert_base_per'
+## training
+python3 run_downstream.py -m train -c downstream/ctc/cv_config/sws.yaml -p ${exp_dir} -u hubert_base -d ctc
+## evalaute
+python3 run_downstream.py -m evaluate -e ${exp_dir}/dev-best.ckpt
+```
+This will give you ther PER for our task
+
+# Step5: Running inference on our pre-trained checkpoints:

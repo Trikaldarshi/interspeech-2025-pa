@@ -32,22 +32,6 @@ def main(args):
         if idx % 100 == 0:
             print(f"Processed {idx} samples...")
 
-    print("\nAvailable configurations and splits for the dataset:")
-    builder = load_dataset(dataset_path, trust_remote_code=True)
-    print("Configs (if any):")
-    configs = getattr(builder, "builder_configs", None)
-    if configs:
-        for name in configs:
-            print(f"  - {name}")
-    else:
-        print("  - [default config]")
-
-    print("\nSplits:")
-    if hasattr(builder, "splits"):
-        for split in builder.splits:
-            print(f"  - {split}")
-    else:
-        print("  - [no split info available]")
 
 
 if __name__ == "__main__":

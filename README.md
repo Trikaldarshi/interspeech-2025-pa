@@ -1,5 +1,5 @@
 # Interspeech-2025: 
-# Step 1 Data Download/ Prepare
+# Step1: Data Download/ Prepare
  ## Install transformers library:
 ```pip install transformers ```
 ### Download CV-Ar data from huggingface and store into 
@@ -34,7 +34,7 @@ pip install -e ".[all]"
 ```
 In this work, the downstream task located in the [s3prl/s3prl/downstream/ctc](https://github.com/s3prl/s3prl/tree/main/s3prl/downstream/ctc) is used to train a ctc based phoneme recognition system.
 
-# Step 2 Data setup for [s3prl/s3prl/downstream/ctc](https://github.com/s3prl/s3prl/tree/main/s3prl/downstream/ctc)
+# Step2: Data setup for [s3prl/s3prl/downstream/ctc](https://github.com/s3prl/s3prl/tree/main/s3prl/downstream/ctc)
 
 a.) 
 Navigate to [s3prl/s3prl/preprocess](https://github.com/s3prl/s3prl/tree/main/s3prl/preprocess) and move  ``` generate_len_for_bucket_sdaia.py ``` there and run:
@@ -51,11 +51,17 @@ python csv_to_tsv_with_transcripts.py --csv_path s3prl/s3prl/data/CV-Ar/len_for_
 python csv_to_tsv_with_transcripts.py --csv_path s3prl/s3prl/data/CV-Ar/len_for_bucket/dev.csv --transcript_root "./sws_data/CV-Ar/" --output_path "./sws_data/CV-Ar/dev/dev.tsv"
 ```
 
-# Step 3: Setting up Downstream task: s3prl/s3prl/downstream/ctc
+# Step3: Setting up Downstream task: s3prl/s3prl/downstream/ctc
 
 a). We need to create the vocab used for phoneme recognition training. The vocab for this dataset is available at: ```vocab/sws_arabic.txt``` or you can run the following code on training data to get the vocab:
 ```
 python get_units.py --input_dir "path_to_your_data/transcripts" --output_path "path/units.txt"
 ```
 b). Move ```vocab/sws_arabic.txt``` to ```s3prl/s3prl/downstream/ctc/cv_vocab/sws_arabic.txt```
+
 c). Move the config/sws.yaml to  ```s3prl/s3prl/downstream/ctc/cv_config/sws.yaml```
+The notable changes to the config are as follows:
+ 1. text.vocab_file
+ 2. downstream_expert.corpus.path: make sure to add your path to dataset
+ 3. downstream_expert.corpus.train,downstream_expert.corpus.dev, downstream_expert.corpus.test: make sure you add your tsv files for each split of the data
+ 4. text.mode: 'word', here we treat each phone similar to a separate word or token for ctc, this would also make wer error rate (wer) = phoneme error rate (per)

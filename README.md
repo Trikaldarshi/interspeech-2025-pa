@@ -51,4 +51,7 @@ python csv_to_tsv_with_transcripts.py --csv_path s3prl/s3prl/data/CV-Ar/len_for_
 python csv_to_tsv_with_transcripts.py --csv_path s3prl/s3prl/data/CV-Ar/len_for_bucket/dev.csv --transcript_root "./sws_data/CV-Ar/" --output_path "./sws_data/CV-Ar/dev/dev.tsv"
 ```
 
+# Step 3: Setting up Downstream task: s3prl/s3prl/downstream/ctc
+
+a). We need to create the vocab used for phoneme recognition training. The vocab for this dataset is available at: vocabl/
 

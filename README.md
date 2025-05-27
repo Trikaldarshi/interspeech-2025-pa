@@ -77,3 +77,17 @@ python3 run_downstream.py -m evaluate -e ${exp_dir}/dev-best.ckpt
 This will give you ther PER for our task
 
 # Step5: Running inference on our pre-trained checkpoints:
+We provide the pre-trained checkpoints with Trainng data as "CV-Ar trainset + TTS " and validation set as "CV-Ar dev" set.
+For HuBERT:
+```
+python s3prl_inference.py \
+  --ckpt "https://huggingface.co/Trikaldarshi/sws_pretrained_models/resolve/main/hubert_base.ckpt" \
+  --dict_path "https://huggingface.co/Trikaldarshi/sws_pretrained_models/resolve/main/sws_arabic.txt" \
+  --wav_dir ./sws_data/CV-Ar/dev/wav/ \
+  --output_csv results.csv
+```
+Please change:
+ 1. WavLM: wavlm_base.ckpt
+ 2. Wav2vec2: wav2vec2_base.ckpt
+ 3. mHuBERT: mhubert.ckpt
+

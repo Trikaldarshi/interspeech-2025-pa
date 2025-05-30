@@ -1,6 +1,6 @@
 # Interspeech-2025: 
 # Step1: Data Download/ Prepare
- ## Install pip install datasets library:
+## Install pip install datasets library:
 ```pip install pip install datasets ```
 ### Download CV-Ar data from huggingface and store into 
  - dev
@@ -91,3 +91,62 @@ Please change:
  2. Wav2vec2: wav2vec2_base.ckpt
  3. mHuBERT: mhubert.ckpt
 
+# Phoneme Alignment and Evaluation
+
+This part provides utilities for aligning predicted phoneme sequences with ground truth and computing metrics (insertions, deletions, substitutions, correct rate, accuracy). 
+---
+
+## 📂 Folder Structure
+
+```text
+metric.py
+align_data.py
+ins_del_cor_sub_analysis.py
+aligned/                  # Output directory for alignment details
+results/                  # Directory for final summary reports
+```
+
+## 🔧 Step 1: Align Data
+
+Use `align_data.py` to align predictions with both the canonical (reference) and annotated (human-transcribed) phoneme sequences.
+
+```bash
+python align_data.py \
+  --truth-file /path/to/test.csv \
+  --pred-file  /path/to/predictions.csv
+```
+
+This will create the `aligned/` folder (if it doesn’t exist) and write:
+
+- `aligned/ref_our_detail` – Reference vs. Prediction  
+- `aligned/ref_human_detail` – Reference vs. Human Annotation  
+- `aligned/human_our_detail` – Human Annotation vs. Prediction  
+
+
+## 📊 Step 2: Compute Metrics
+
+Once the alignments are saved, run `ins_del_cor_sub_analysis.py` to compute summary metrics.
+
+```bash
+python ins_del_cor_sub_analysis.py \
+  --out-file      results/out.txt \
+  --align-folder  aligned/
+```
+
+- Reads alignment files from `aligned/`
+- Computes Correct Rate & Accuracy
+- Writes summary to `results/out.txt`
+
+## 📝 Input CSV Formats
+
+### `truth-file`
+Must contain columns:
+- `ID`
+- `Reference_phn`
+- `Annotated_phn`
+- _Optional for vowel-only_: `Reference_vow_phn`, `Annotated_vow_phn`
+
+### `pred-file`
+Must contain columns:
+- `ID`
+- `Prediction`
